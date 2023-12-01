@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 
 
@@ -9,7 +10,7 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const AddContest = () => {
 
-    const { register, handleSubmit } = useForm()
+    const { register, handleSubmit, reset } = useForm()
     const axiosPublic = useAxiosPublic();
     const onSubmit = async (data) => {
         const imageFile = { image: data.image[0] }
@@ -33,7 +34,14 @@ const AddContest = () => {
             }
             const contestAll = await axiosPublic.post('/contests', contestItem);
             if(contestAll.data.insertedId){
-                alert("Done")
+                reset()
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: `${data.name} Added SuccessFully`,
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
             }
         }
 
