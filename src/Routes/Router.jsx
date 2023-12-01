@@ -26,7 +26,7 @@ import PrivateRoute from "./PrivateRoute";
         },
         {
           path:"/allcontest",
-          element:<AllContest></AllContest>
+          element:<PrivateRoute><AllContest></AllContest></PrivateRoute>
         },
         {
           path:"/signup",
@@ -42,7 +42,7 @@ import PrivateRoute from "./PrivateRoute";
     // DashBoard Routes 
     {
       path:"/dashboard",
-      element:<PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
+      element:<DashBoard></DashBoard>,
       children:[
         {
           path:"profile",

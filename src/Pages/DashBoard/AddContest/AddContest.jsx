@@ -1,22 +1,42 @@
 import { useForm } from "react-hook-form";
 import useAxiosPublic from "../../../Hooks/useAxiosPublic";
-import swal from "sweetalert";
 
+
+
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const AddContest = () => {
 
-    const axiosPublic = useAxiosPublic();
     const { register, handleSubmit } = useForm()
-    const onSubmit = (data) => {
-        console.log(data)
-        axiosPublic.post("/contests", data)
-        .then(res=>{
-            
-            if(res.data.insertedId){
-                swal("Good job!", "Register SuccessFully", "success");
+    const axiosPublic = useAxiosPublic();
+    const onSubmit = async (data) => {
+        const imageFile = { image: data.image[0] }
+        const res = await axiosPublic.post(image_hosting_api, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
             }
-          
-        })
+        });
+        if (res.data.success) {
+            const contestItem = {
+                name: data.name,
+                type: data.type,
+                price: data.price,
+                prizeMoney: data.prizeMoney,
+                deadline: data.deadline,
+                description: data.description,
+                instruction: data.instruction,
+                image: res.data.data.display_url
+
+
+            }
+            const contestAll = await axiosPublic.post('/contests', contestItem);
+            if(contestAll.data.insertedId){
+                alert("Done")
+            }
+        }
+
     }
 
     return (
@@ -39,7 +59,7 @@ const AddContest = () => {
                                 <span className="label-text">Contest Type</span>
                             </div>
 
-                            <select defaultValue="default" {...register("Type", { required: true, })} className="select select-bordered w-full ">
+                            <select defaultValue="default" {...register("type", { required: true, })} className="select select-bordered w-full ">
                                 <option disabled value="default">Select Type</option>
                                 <option value="business">Business</option>
                                 <option value="medical">Medical</option>
@@ -100,7 +120,7 @@ const AddContest = () => {
 
                     {/* Photo UpLode  */}
                     <div className="form-control w-full mt-2">
-                        <input {...register("photo", { required: true })} type="file" className="file-input btn-sm font-bold text-orange-600 w-full max-w-xs" />
+                        <input {...register("image", { required: true })} type="file" className="file-input btn-sm font-bold text-orange-600 w-full max-w-xs" />
                     </div>
 
                     <div className=" text-center">
