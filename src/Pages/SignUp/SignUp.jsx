@@ -27,7 +27,8 @@ const SignUp = () => {
                         // User entry in the database 
                         const userInfo = {
                             name: data.name,
-                            email: data.email
+                            email: data.email,
+                            role: "user"
                         }
                         axiosPublic.post('/users', userInfo)
                         .then(res =>{
@@ -114,7 +115,7 @@ const SignUp = () => {
                             <div className="form-control mt-6">
                                 <input className=" p-1 rounded-md font-bold text-white hover:cursor-pointer hover:bg-blue-500 bg-orange-600" type="submit" value="Sign Up" />
                             </div>
-                            
+
                             <div className="divider">OR</div>
                         </form>
 

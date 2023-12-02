@@ -33,7 +33,7 @@ const AddContest = () => {
 
             }
             const contestAll = await axiosPublic.post('/contests', contestItem);
-            if(contestAll.data.insertedId){
+            if (contestAll.data.insertedId) {
                 reset()
                 Swal.fire({
                     position: "center",
@@ -41,7 +41,7 @@ const AddContest = () => {
                     title: `${data.name} Added SuccessFully`,
                     showConfirmButton: false,
                     timer: 1500
-                  });
+                });
             }
         }
 
@@ -49,9 +49,9 @@ const AddContest = () => {
 
     return (
         <div>
-            <h1 className="text-3xl font-bold text-center mt-4">Add Your Contest</h1>
+            <h1 className="text-3xl font-bold text-center mb-4 mt-2">Add Your Contest</h1>
 
-            <div className="w-3/4 mx-auto ">
+            <div className="w-3/4 mx-auto bg-blue-300 p-8 rounded-md">
                 <form onSubmit={handleSubmit(onSubmit)}>
 
                     <label className="form-control w-full">
@@ -131,7 +131,7 @@ const AddContest = () => {
                         <input {...register("image", { required: true })} type="file" className="file-input btn-sm font-bold text-orange-600 w-full max-w-xs" />
                     </div>
 
-                    <div className=" text-center">
+                    <div className=" text-center mt-3">
                         <button className="btn  bg-blue-600 hover:bg-orange-500 text-white">Submit</button>
                     </div>
                 </form>

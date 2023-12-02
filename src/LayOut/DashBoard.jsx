@@ -7,6 +7,7 @@ const DashBoard = () => {
 
     const isAdmin = true;
 
+
     return (
         <div>
 
@@ -27,15 +28,21 @@ const DashBoard = () => {
 
                         {
                             isAdmin ? <>
+
                                 <li className="lg:font-bold lg:text-base">
                                     <NavLink to="/dashboard/manageUser">Manage User</NavLink>
                                 </li>
-
                                 <li className="lg:font-bold lg:text-base">
                                     <NavLink to="/dashboard/manageContest">Manage Contest</NavLink>
                                 </li>
                                 <li className="lg:font-bold lg:text-base ">
                                     <NavLink to="/dashboard/addcontest">Add Contest</NavLink>
+                                </li>
+
+                                <div className="divider">OR</div>
+                                
+                                <li className="lg:font-bold lg:text-base">
+                                    <NavLink to="/">Home</NavLink>
                                 </li>
                             </>
                                 :
@@ -55,7 +62,7 @@ const DashBoard = () => {
                                         <NavLink to="/dashboard/submitted">Contest Submitted</NavLink>
                                     </li>
 
-                                    {/* Divider  */}
+
                                     <div className="divider">OR</div>
 
                                     <li className="lg:font-bold lg:text-base">

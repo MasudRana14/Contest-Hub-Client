@@ -1,11 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
-import { FaTrash, FaUser, FaUsers } from "react-icons/fa";
+import { FaTrash, FaUserSecret, FaUsers } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const ManageUser = () => {
 
     const axiosSecure = useAxiosSecure();
-    const { data: users = [] } = useQuery({
+    const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users');
@@ -13,9 +14,69 @@ const ManageUser = () => {
         }
     })
 
-    const handleUserDelete = user =>{
 
-    } 
+    const handleAddedAdmin = user => {
+        axiosSecure.patch(`/users/admin/${user._id}`)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "top",
+                        icon: "success",
+                        title: `${user.name} is an Admin Now`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
+
+    const handleAddedCreator = user => {
+        axiosSecure.put(`/users/admin/${user._id}`)
+            .then(res => {
+                if (res.data.modifiedCount > 0) {
+                    refetch()
+                    Swal.fire({
+                        position: "top",
+                        icon: "success",
+                        title: `${user.name} is an Creator Now`,
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                }
+            })
+    }
+
+
+
+
+
+    const handleUserDelete = user => {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                axiosSecure.delete(`/users/${user._id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Deleted!",
+                                text: `${user.name} has been deleted`,
+                                icon: "success"
+                            });
+                        }
+                    })
+
+            }
+        });
+    }
 
     return (
         <div className="mt-7 w-3/4 mx-auto">
@@ -35,6 +96,7 @@ const ManageUser = () => {
                             <th>Name</th>
                             <th>Email</th>
                             <th>Role</th>
+                            <th>Creator</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -45,13 +107,24 @@ const ManageUser = () => {
                                 <td className="font-bold">{user.name}</td>
                                 <td className="font-medium">{user.email}</td>
                                 <td>
-                                    <button>
+                                    {user.role === 'admin' ? 'Admin' : <button onClick={() => handleAddedAdmin(user)}>
                                         <FaUsers className="text-2xl text-blue-500"></FaUsers>
-                                    </button>
+                                    </button>}
+
                                 </td>
-                                <button></button>
+
+                                {/* Creator Button  */}
                                 <td>
-                                    <button>
+
+                                    {user.role === 'creator' ? 'Creator' : <button onClick={() => handleAddedCreator(user)}>
+                                    <FaUserSecret className="text-2xl text-blue-500"></FaUserSecret>
+                                    </button>}
+
+
+                                </td>
+
+                                <td>
+                                    <button onClick={() => handleUserDelete(user)}>
                                         <FaTrash className="text-lg text-red-500"></FaTrash>
                                     </button>
                                 </td>
