@@ -10,8 +10,9 @@ import DashBoard from "../LayOut/DashBoard";
 import MyProfile from "../Pages/DashBoard/MyProfile/MyProfile";
 import AddContest from "../Pages/DashBoard/AddContest/AddContest";
 import ErrorPage from "../Component/ErrorPage/ErrorPage";
-import PrivateRoute from "./PrivateRoute";
 import ManageUser from "../Pages/ManageUsers/ManageUser";
+import PrivateRoute from "./PrivateRoute";
+
 
 
 
@@ -27,7 +28,7 @@ import ManageUser from "../Pages/ManageUsers/ManageUser";
         },
         {
           path:"/allcontest",
-          element:<PrivateRoute><AllContest></AllContest></PrivateRoute>
+          element:<AllContest></AllContest>
         },
         {
           path:"/signup",
@@ -43,7 +44,7 @@ import ManageUser from "../Pages/ManageUsers/ManageUser";
     // DashBoard Routes 
     {
       path:"/dashboard",
-      element:<DashBoard></DashBoard>,
+      element:<PrivateRoute><DashBoard></DashBoard></PrivateRoute>,
       children:[
         {
           path:"profile",
