@@ -4,28 +4,40 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import swal from "sweetalert";
-
+import GoogleLogin from "../../Component/SocialLogin/GoogleLogin/GoogleLogin";
+import useAxiosPublic from "../../Hooks/useAxiosPublic"
 
 
 
 const SignUp = () => {
 
- 
+ const axiosPublic = useAxiosPublic();
     const { register, handleSubmit, reset, formState: { errors }, } = useForm();
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
+
         createUser(data.email, data.password)
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
                 updateUserProfile(data.name, data.photoURL)
                     .then(() => {
-                        console.log('profile info update');
-                        reset();
-                        swal("Good job!", "Register SuccessFully", "success");
-                        navigate('/')
+                        // User entry in the database 
+                        const userInfo = {
+                            name: data.name,
+                            email: data.email
+                        }
+                        axiosPublic.post('/users', userInfo)
+                        .then(res =>{
+                            if(res.data.insertedId){
+                                reset();
+                                swal("Good job!", "Register SuccessFully", "success");
+                                navigate('/')
+                            }
+                        })
+                       
                     })
 
                     .catch(error => {
@@ -102,9 +114,13 @@ const SignUp = () => {
                             <div className="form-control mt-6">
                                 <input className=" p-1 rounded-md font-bold text-white hover:cursor-pointer hover:bg-blue-500 bg-orange-600" type="submit" value="Sign Up" />
                             </div>
-
-                    
+                            
+                            <div className="divider">OR</div>
                         </form>
+
+                        <div className=" mx-auto -mt-8 mb-8">
+                            <GoogleLogin></GoogleLogin>
+                        </div>
                        
                         <div className=" mx-auto -mt-6 mb-3">
                         <p>HAVE AN ACCOUNT? <Link to="/login"><span className="text-blue-500 font-bold">LOGIN</span></Link></p>

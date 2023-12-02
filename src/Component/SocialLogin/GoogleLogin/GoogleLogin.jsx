@@ -1,29 +1,38 @@
 import { useContext } from "react";
-import {  FaGoogle } from "react-icons/fa";
+import { FaGoogle } from "react-icons/fa";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import swal from "sweetalert";
+import useAxiosPublic from "../../../Hooks/useAxiosPublic";
 
 const GoogleLogin = () => {
 
-    const {googleSingIn} = useContext(AuthContext);
+    const { googleSingIn } = useContext(AuthContext);
     const navigate = useNavigate();
+    const axiosPublic = useAxiosPublic();
 
-
-    const handleGoogleSignIn = ()=>{
+    const handleGoogleSignIn = () => {
         googleSingIn()
-        .then(result=>{
-            console.log(result);
-            swal("Good job!", "Google Login Successfully", "success");
-            navigate('/')
-        })
+            .then(result => {
+                const userInfo = {
+                    email: result.user?.email,
+                    name: result.user?.displayName
+                }
+                axiosPublic.post('/users', userInfo)
+                    .then(res => {
+                        console.log(res);
+                        swal("Good job!", "Google Login Successfully", "success");
+                        navigate('/')
+                    })
+
+            })
 
     }
 
     return (
         <div>
             <button onClick={handleGoogleSignIn} className="btn bg-blue-500 hover:bg-orange-500 text-white px-8 btn-sm text-xl"><FaGoogle></FaGoogle></button>
-           
+
         </div>
     );
 };

@@ -11,6 +11,7 @@ import MyProfile from "../Pages/DashBoard/MyProfile/MyProfile";
 import AddContest from "../Pages/DashBoard/AddContest/AddContest";
 import ErrorPage from "../Component/ErrorPage/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import ManageUser from "../Pages/ManageUsers/ManageUser";
 
 
 
@@ -51,6 +52,10 @@ import PrivateRoute from "./PrivateRoute";
         {
           path:"addcontest",
           element:<AddContest></AddContest>
+        },
+        {
+          path:"manageUser",
+          element:<ManageUser></ManageUser>
         }
       ]
     }
