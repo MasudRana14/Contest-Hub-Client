@@ -13,6 +13,8 @@ import ErrorPage from "../Component/ErrorPage/ErrorPage";
 import ManageUser from "../Pages/ManageUsers/ManageUser";
 import PrivateRoute from "./PrivateRoute";
 import ContestDetails from "../Pages/AllContest/ContestDetails";
+import AboutUs from "../Pages/AboutUs/AboutUs";
+import ContactUs from "../Pages/ContactUs/ContactUs";
 
 
 
@@ -30,6 +32,14 @@ import ContestDetails from "../Pages/AllContest/ContestDetails";
         {
           path:"/allcontest",
           element:<AllContest></AllContest>
+        },
+        {
+          path:"/about",
+          element:<AboutUs></AboutUs>
+        },
+        {
+          path:"/contact",
+          element:<ContactUs></ContactUs>
         },
         {
           path:"/signup",

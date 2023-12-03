@@ -44,6 +44,24 @@ const NavBar = () => {
             <li className="font-bold">All Contest</li>
         </NavLink>
 
+        <NavLink
+            to="/about"
+            className={({ isActive, isPending, }) =>
+                isPending ? "pending" : isActive ? "text-orange-600 underline" : ""
+            }
+        >
+            <li className="font-bold">About Us</li>
+        </NavLink>
+
+        <NavLink
+            to="/contact"
+            className={({ isActive, isPending, }) =>
+                isPending ? "pending" : isActive ? "text-orange-600 underline" : ""
+            }
+        >
+            <li className="font-bold">Contact</li>
+        </NavLink>
+
 
     </>
 
