@@ -12,6 +12,7 @@ import AddContest from "../Pages/DashBoard/AddContest/AddContest";
 import ErrorPage from "../Component/ErrorPage/ErrorPage";
 import ManageUser from "../Pages/ManageUsers/ManageUser";
 import PrivateRoute from "./PrivateRoute";
+import ContestDetails from "../Pages/AllContest/ContestDetails";
 
 
 
@@ -37,9 +38,15 @@ import PrivateRoute from "./PrivateRoute";
         {
             path:"/login",
             element:<Login></Login>
+        },
+        {
+          path:"/details/:id",
+          element:<ContestDetails></ContestDetails>,
+          loader: ({params})=>fetch(`http://localhost:5000/contests/${params.id}`)
         }
       ]
     },
+    
 
     // DashBoard Routes 
     {
@@ -57,7 +64,8 @@ import PrivateRoute from "./PrivateRoute";
         {
           path:"manageUser",
           element:<ManageUser></ManageUser>
-        }
+        },
+       
       ]
     }
   ]);

@@ -15,7 +15,7 @@ const DashBoard = () => {
             <div className="flex">
 
                 {/* Dashboard Side Menu Bar  */}
-                <div className=" w-32 lg:w-64 min-h-screen bg-orange-400 ">
+                <div className=" w-32 lg:w-64 min-h-screen bg-slate-200 ">
 
                     {/* Title  */}
                     <div>

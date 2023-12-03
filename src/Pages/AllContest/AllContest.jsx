@@ -18,7 +18,7 @@ const AllContest = () => {
 
     return (
         <div>
-            <h1>All Contest{contest.length}</h1>
+            <h1 className="text-3xl text-center">All Contest: {contest.length}</h1>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3">
                 {

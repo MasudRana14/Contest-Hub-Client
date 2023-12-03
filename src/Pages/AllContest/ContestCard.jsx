@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const ContestCard = ({ item }) => {
 
-    const { name, image, description } = item;
+    const {_id, name, image, description } = item;
 
     return (
         <div>
@@ -20,8 +20,8 @@ const ContestCard = ({ item }) => {
                         {description}
                     </p>
 
-                    <div className="">
-                        <Link>Details</Link>
+                    <div className="bg-orange-600 hover:bg-blue-600 mt-3 w-fit px-2 py-1 rounded-md font-semibold text-white">
+                        <Link to={`/details/${_id}`}>Details</Link>
                     </div>
 
                 </div>
