@@ -3,6 +3,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import ContestCard from "./ContestCard";
 
 
+
 const AllContest = () => {
 
 
@@ -18,9 +19,10 @@ const AllContest = () => {
 
     return (
         <div>
-            <h1 className="text-3xl text-center">All Contest: {contest.length}</h1>
-
-            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3">
+            <h1 className="text-3xl text-center font-bold mt-5">All Contest: {contest.length}</h1>
+            <p className="border-2 border-b-orange-600 w-1/12 mx-auto"></p>
+         
+            <div className="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-3 mt-8">
                 {
                     contest.map(item => <ContestCard key={item._id} item={item}></ContestCard>)
                 }

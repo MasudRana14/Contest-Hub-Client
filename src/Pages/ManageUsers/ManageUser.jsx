@@ -79,7 +79,7 @@ const ManageUser = () => {
     }
 
     return (
-        <div className="mt-7 w-3/4 mx-auto">
+        <div className="mt-7 w-3/4 mx-auto bg-blue-100">
             <div className="flex justify-evenly">
                 <h3 className="text-2xl">All Users</h3>
                 <h3 className="text-2xl">Total Users {users.length}</h3>
@@ -87,8 +87,8 @@ const ManageUser = () => {
 
             {/* Table  */}
 
-            <div className="overflow-x-auto">
-                <table className="table">
+            <div className="overflow-x-auto ">
+                <table className="table ">
                     {/* head */}
                     <thead>
                         <tr>
@@ -117,7 +117,7 @@ const ManageUser = () => {
                                 <td>
 
                                     {user.role === 'creator' ? 'Creator' : <button onClick={() => handleAddedCreator(user)}>
-                                    <FaUserSecret className="text-2xl text-blue-500"></FaUserSecret>
+                                        <FaUserSecret className="text-2xl text-blue-500"></FaUserSecret>
                                     </button>}
 
 

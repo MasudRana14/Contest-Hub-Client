@@ -22,7 +22,7 @@ const AboutUs = () => {
 
 
             <h1 className="text-center font-bold text-3xl text-orange-600 mt-7">About <span className="text-blue-600">Us</span></h1>
-            <p className="border-2 border-b-yellow-700 w-1/12 mx-auto"></p>
+            <p className="border-2 border-b-orange-600 w-1/12 mx-auto"></p>
 
 
             <div className="mt-6 mb-8">

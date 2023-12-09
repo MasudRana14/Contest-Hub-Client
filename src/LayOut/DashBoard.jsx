@@ -1,12 +1,12 @@
-import { FaUser } from "react-icons/fa";
+import { FaHome, FaUser } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
+import useAdmin from "../Hooks/useAdmin";
 
 
 
 const DashBoard = () => {
 
-    const isAdmin = true;
-
+    const [isAdmin] = useAdmin();
 
     return (
         <div>
@@ -28,21 +28,27 @@ const DashBoard = () => {
 
                         {
                             isAdmin ? <>
-
                                 <li className="lg:font-bold lg:text-base">
                                     <NavLink to="/dashboard/manageUser">Manage User</NavLink>
+                                </li>
+
+                                <li className="lg:font-bold lg:text-base ">
+                                    <NavLink to="/dashboard/addcontest">Add Contest</NavLink>
                                 </li>
                                 <li className="lg:font-bold lg:text-base">
                                     <NavLink to="/dashboard/manageContest">Manage Contest</NavLink>
                                 </li>
-                                <li className="lg:font-bold lg:text-base ">
-                                    <NavLink to="/dashboard/addcontest">Add Contest</NavLink>
+                                <li className="lg:font-bold lg:text-base">
+                                    <NavLink to="/dashboard/createContest">My Created Contest</NavLink>
+                                </li>
+                                <li className="lg:font-bold lg:text-base">
+                                    <NavLink to="/dashboard/submitted">Submitted Contest</NavLink>
                                 </li>
 
                                 <div className="divider">OR</div>
-                                
-                                <li className="lg:font-bold lg:text-base">
-                                    <NavLink to="/">Home</NavLink>
+
+                                <li className="lg:font-bold lg:text-base mx-auto">
+                                    <NavLink to="/"><FaHome></FaHome> Home</NavLink>
                                 </li>
                             </>
                                 :
@@ -55,26 +61,19 @@ const DashBoard = () => {
 
 
                                     <li className="lg:font-bold lg:text-base">
-                                        <NavLink to="/dashboard/createdcontest">My Created Contest</NavLink>
-                                    </li>
-
-                                    <li className="lg:font-bold lg:text-base">
-                                        <NavLink to="/dashboard/submitted">Contest Submitted</NavLink>
-                                    </li>
-
-
-                                    <div className="divider">OR</div>
-
-                                    <li className="lg:font-bold lg:text-base">
-                                        <NavLink to="/dashboard/participate">My Participated Contest</NavLink>
+                                        <NavLink to="/dashboard/participated">My Participated Contest</NavLink>
                                     </li>
 
                                     <li className="lg:font-bold lg:text-base">
                                         <NavLink to="/dashboard/winning">My Winning Contest</NavLink>
                                     </li>
 
-                                    <li className="lg:font-bold lg:text-base">
-                                        <NavLink to="/">Home</NavLink>
+
+                                    <div className="divider">OR</div>
+
+
+                                    <li className="lg:font-bold lg:text-base mx-auto">
+                                        <NavLink to="/"><FaHome></FaHome> Home</NavLink>
                                     </li>
                                 </>
                         }

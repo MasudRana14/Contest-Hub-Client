@@ -69,7 +69,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <div className="navbar px-5 h-14 shadow-md rounded-t-sm">
+            <div className="navbar px-5 h-14 shadow-md rounded-t-lg ">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -96,7 +96,7 @@ const NavBar = () => {
 
                         {
                             user ? <div className="dropdown dropdown-end">
-                                <label tabIndex={0} className="btn px-0 py-0 "> <div className="avatar">
+                                <label tabIndex={0} className=" hover:cursor-pointer px-0 py-0 "> <div className="avatar">
                                     <div className="w-9 rounded-full">
 
                                         <img src={user?.photoURL} />

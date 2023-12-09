@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 
 
+
 const ContestCard = ({ item }) => {
 
     const {_id, name, image, description } = item;
 
     return (
         <div>
+
             <div className="relative flex flex-col text-gray-700 shadow-md bg-clip-border rounded-xl w-96">
                 <div className="relative mx-4 mt-4 overflow-hidden text-gray-700 bg-white shadow-lg bg-clip-border rounded-xl ">
                     <img className="w-full " src={image} alt="profile-picture" />
