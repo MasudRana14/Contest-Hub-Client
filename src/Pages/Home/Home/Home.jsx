@@ -1,3 +1,4 @@
+import Qna from "../../Qna/Qna";
 import UpComingContest from "../../UpComingContest/UpComingContest";
 import Banner from "../Banner/Banner";
 import ContestWinner from "../Shared/ContestWinner/ContestWinner";
@@ -11,8 +12,9 @@ const Home = () => {
            <Banner></Banner>
            <PopularContest></PopularContest>
            <UpComingContest></UpComingContest>
-           <ContestWinner></ContestWinner>
+           <ContestWinner></ContestWinner>    
            <WinnersGallery></WinnersGallery>
+           <Qna></Qna>
         </div>
     );
 };
